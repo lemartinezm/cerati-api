@@ -1,11 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { CreateInfoDto } from './dto/create-info.dto';
 import { UpdateInfoDto } from './dto/update-info.dto';
+import { Info } from './schemas/info.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class InfoService {
+  constructor(@InjectModel(Info.name) private infoModel: Model<Info>) {}
+
   create(createInfoDto: CreateInfoDto) {
-    return 'This action adds a new info';
+    const createdInfo = new this.infoModel(createInfoDto);
+    return createdInfo.save();
   }
 
   findAll() {

@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { InfoService } from './info.service';
 import { CreateInfoDto } from './dto/create-info.dto';
@@ -16,6 +18,7 @@ export class InfoController {
   constructor(private readonly infoService: InfoService) {}
 
   @Post()
+  @UsePipes(new ValidationPipe())
   create(@Body() createInfoDto: CreateInfoDto) {
     return this.infoService.create(createInfoDto);
   }

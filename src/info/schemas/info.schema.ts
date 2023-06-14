@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { ISocial } from '../interfaces/social.interface';
-import { SocialSchema } from './social.schema';
+import { Social } from '../dto/create-info.dto';
 
 export type InfoDocument = HydratedDocument<Info>;
 
@@ -16,8 +15,8 @@ export class Info {
   @Prop()
   image: string;
 
-  @Prop({ type: SocialSchema })
-  social: ISocial;
+  @Prop({ type: Social })
+  social: Social;
 }
 
 export const InfoSchema = SchemaFactory.createForClass(Info);

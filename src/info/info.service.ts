@@ -9,13 +9,14 @@ import { Model } from 'mongoose';
 export class InfoService {
   constructor(@InjectModel(Info.name) private infoModel: Model<Info>) {}
 
-  create(createInfoDto: CreateInfoDto) {
+  async create(createInfoDto: CreateInfoDto) {
     const createdInfo = new this.infoModel(createInfoDto);
-    return createdInfo.save();
+    return await createdInfo.save();
   }
 
-  findAll() {
-    return `This action returns all info`;
+  async findAll() {
+    const info = await this.infoModel.findOne().exec();
+    return info;
   }
 
   findOne(id: number) {

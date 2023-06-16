@@ -34,8 +34,9 @@ export class SongsController {
   }
 
   @Patch(':id')
+  @UsePipes(new ValidationPipe())
   update(@Param('id') id: string, @Body() updateSongDto: UpdateSongDto) {
-    return this.songsService.update(+id, updateSongDto);
+    return this.songsService.update(id, updateSongDto);
   }
 
   @Delete(':id')

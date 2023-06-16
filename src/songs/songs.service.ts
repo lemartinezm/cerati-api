@@ -35,8 +35,13 @@ export class SongsService {
     };
   }
 
-  update(id: number, updateSongDto: UpdateSongDto) {
-    return `This action updates a #${id} song`;
+  async update(id: string, updateSongDto: UpdateSongDto) {
+    const song = await this.songModel.findByIdAndUpdate(id, updateSongDto);
+    return {
+      success: true,
+      message: 'Song updated successfully',
+      data: song,
+    };
   }
 
   remove(id: number) {

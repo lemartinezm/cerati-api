@@ -44,7 +44,12 @@ export class SongsService {
     };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} song`;
+  async remove(id: string) {
+    const song = await this.songModel.findByIdAndDelete(id);
+    return {
+      success: true,
+      message: 'Song deleted successfully',
+      data: song,
+    };
   }
 }

@@ -40,7 +40,7 @@ export class SongsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.songsService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return this.songsService.remove(id);
   }
 }

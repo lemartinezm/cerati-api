@@ -27,8 +27,12 @@ export class SongsService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} song`;
+  async findOne(id: string) {
+    const song = await this.songModel.findById(id);
+    return {
+      success: true,
+      data: song,
+    };
   }
 
   update(id: number, updateSongDto: UpdateSongDto) {

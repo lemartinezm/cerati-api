@@ -19,8 +19,12 @@ export class SongsService {
     };
   }
 
-  findAll() {
-    return `This action returns all songs`;
+  async findAll() {
+    const songs = await this.songModel.find();
+    return {
+      success: true,
+      data: songs,
+    };
   }
 
   findOne(id: number) {

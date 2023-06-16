@@ -31,8 +31,4 @@ export class InfoService {
       data: infoUpdated,
     };
   }
-
-  remove(id: number) {
-    return `This action removes a #${id} info`;
-  }
 }

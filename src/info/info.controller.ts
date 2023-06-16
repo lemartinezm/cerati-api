@@ -4,8 +4,6 @@ import {
   Post,
   Body,
   Patch,
-  Param,
-  Delete,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -32,10 +30,5 @@ export class InfoController {
   @UsePipes(new ValidationPipe())
   update(@Body() updateInfoDto: UpdateInfoDto) {
     return this.infoService.update(updateInfoDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.infoService.remove(+id);
   }
 }

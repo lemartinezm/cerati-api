@@ -19,12 +19,17 @@ export class InfoService {
     return info;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} info`;
-  }
+  async update(updateInfoDto: UpdateInfoDto) {
+    const infoUpdated = await this.infoModel.findOneAndUpdate(
+      {},
+      updateInfoDto,
+    );
 
-  update(id: number, updateInfoDto: UpdateInfoDto) {
-    return `This action updates a #${id} info`;
+    return {
+      success: true,
+      message: 'Info updated successfully',
+      data: infoUpdated,
+    };
   }
 
   remove(id: number) {

@@ -28,9 +28,10 @@ export class InfoController {
     return this.infoService.findAll();
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInfoDto: UpdateInfoDto) {
-    return this.infoService.update(+id, updateInfoDto);
+  @Patch()
+  @UsePipes(new ValidationPipe())
+  update(@Body() updateInfoDto: UpdateInfoDto) {
+    return this.infoService.update(updateInfoDto);
   }
 
   @Delete(':id')

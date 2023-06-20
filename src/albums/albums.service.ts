@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAlbumDto } from './dto/create-album.dto';
 import { UpdateAlbumDto } from './dto/update-album.dto';
 import { InjectModel } from '@nestjs/mongoose';
@@ -27,8 +27,18 @@ export class AlbumsService {
     };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} album`;
+  async findOne(id: string) {
+    const album = await this.albumModel.findById(id);
+    if (!album)
+      throw new NotFoundException({
+        success: false,
+        message: 'Album not found',
+      });
+
+    return {
+      success: true,
+      data: album,
+    };
   }
 
   update(id: number, updateAlbumDto: UpdateAlbumDto) {

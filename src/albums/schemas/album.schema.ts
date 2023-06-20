@@ -6,6 +6,9 @@ export class Album {
   name: string;
 
   @Prop()
+  image: string;
+
+  @Prop()
   year: number;
 
   @Prop()

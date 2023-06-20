@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  IsUrl,
   Min,
 } from 'class-validator';
 
@@ -11,6 +12,10 @@ export class CreateAlbumDto {
   @IsString()
   @IsNotEmpty()
   name: string;
+
+  @IsUrl()
+  @IsNotEmpty()
+  image: string;
 
   @IsInt()
   @IsNotEmpty()

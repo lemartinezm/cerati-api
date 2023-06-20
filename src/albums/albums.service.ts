@@ -19,8 +19,12 @@ export class AlbumsService {
     };
   }
 
-  findAll() {
-    return `This action returns all albums`;
+  async findAll() {
+    const allAlbums = await this.albumModel.find();
+    return {
+      success: true,
+      data: allAlbums,
+    };
   }
 
   findOne(id: number) {

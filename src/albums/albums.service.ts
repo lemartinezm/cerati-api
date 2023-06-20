@@ -52,7 +52,12 @@ export class AlbumsService {
     };
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} album`;
+  async remove(id: string) {
+    const album = await this.albumModel.findByIdAndDelete(id);
+    return {
+      success: true,
+      message: 'Album deleted successfully',
+      data: album,
+    };
   }
 }

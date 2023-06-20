@@ -41,8 +41,15 @@ export class AlbumsService {
     };
   }
 
-  update(id: number, updateAlbumDto: UpdateAlbumDto) {
-    return `This action updates a #${id} album`;
+  async update(id: string, updateAlbumDto: UpdateAlbumDto) {
+    const album = await this.albumModel.findByIdAndUpdate(id, updateAlbumDto, {
+      new: true,
+    });
+
+    return {
+      success: true,
+      data: album,
+    };
   }
 
   remove(id: number) {

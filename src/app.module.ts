@@ -5,7 +5,6 @@ import { InfoModule } from './info/info.module';
 import { AlbumsModule } from './albums/albums.module';
 import { SongsModule } from './songs/songs.module';
 import { EventsModule } from './events/events.module';
-import { LyricsModule } from './lyrics/lyrics.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
@@ -15,7 +14,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     SongsModule,
     AlbumsModule,
     EventsModule,
-    LyricsModule,
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { InfoModule } from './info/info.module';
 import { AlbumsModule } from './albums/albums.module';
 import { SongsModule } from './songs/songs.module';
 import { EventsModule } from './events/events.module';
@@ -10,7 +9,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    InfoModule,
     SongsModule,
     AlbumsModule,
     EventsModule,

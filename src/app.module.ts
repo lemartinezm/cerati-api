@@ -5,6 +5,7 @@ import { AlbumsModule } from './albums/albums.module';
 import { SongsModule } from './songs/songs.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ArtistsModule } from './artists/artists.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
       inject: [ConfigService],
     }),
+    ArtistsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

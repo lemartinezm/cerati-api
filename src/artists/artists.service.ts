@@ -1,11 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Artist } from './schemas/artist.schema';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class ArtistsService {
-  create(createArtistDto: CreateArtistDto) {
-    return 'This action adds a new artist';
+  constructor(@InjectModel(Artist.name) private artistModel: Model<Artist>) {}
+  async create(createArtistDto: CreateArtistDto) {
+    const artist = new this.artistModel(createArtistDto);
+    const newArtist = await artist.save();
+    return {
+      success: true,
+      message: 'Artist created successfully',
+      data: newArtist,
+    };
   }
 
   findAll() {
